@@ -11,8 +11,17 @@
   text-decoration: none;
   list-style-type: none;
   font-family: 'Poppins', sans-serif;
+  outline: none;
 }
-:root{
+h1 {
+  color: var(--white-color);
+  font-weight: bolder;
+  font-size: 2.8rem;
+  background-color: var(--primary-color);
+  border-radius: 20px;
+  padding: 10px;
+}
+:root {
   --primary-color: #EA7070;
   --secondary-color: #40005d;
   --white-color: #fff;
