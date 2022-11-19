@@ -1,0 +1,12 @@
+h1{
+    color:coral;
+}
+.expense__price{
+    font-size: 1.4rem;
+    font-weight: bold;
+    border: 1px solid white;
+    padding:0.5rem;
+    border-radius: 12px;
+    color: var(--white-color); 
+    background: var(--secondary-color);
+}
