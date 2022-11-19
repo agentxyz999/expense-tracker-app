@@ -16,5 +16,6 @@
   --primary-color: #EA7070;
   --secondary-color: #40005d;
   --white-color: #fff;
-  --light-color: rgba(255, 255, 255, 0.6);
+  --light-color: #4b4b4b;
+  --dark-color: #212529;
 }

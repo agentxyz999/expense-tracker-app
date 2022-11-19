@@ -1,12 +1,40 @@
 h1{
-    color:coral;
+    color: var(--white-color);
 }
-.expense__price{
+.card__header{
+    background-color: var(--primary-color);
+}
+.expense__date,
+.expense__item {
     font-size: 1.4rem;
     font-weight: bold;
-    border: 1px solid white;
-    padding:0.5rem;
+    color: var(--primary-color);
+    padding: 1rem 0;
+}
+.expense__amount{
+    font-size: 1.4rem;
+    font-weight: bold;
+    height: 5rem;
+    border: 2px solid var(--white-color);
     border-radius: 12px;
+    padding: 1rem 0;
     color: var(--white-color); 
     background: var(--secondary-color);
+}
+.card__body{
+    background: var(--light-color);
+}
+
+/* style to make the Date look like a calendar card */
+.date__card{
+    display: flex;
+    flex-direction: column;
+    width: 9.5rem;
+    height: 7.5rem;
+    border: 1px solid var(--white-color);
+    background-color: var(--dark-color);
+    color: var(--white-color);
+    border-radius: 12px;
+    align-items: center;
+    justify-content: center;
 }
