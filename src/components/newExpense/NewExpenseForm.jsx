@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap/";
 
-const NewExpenseForm = () => {
+const NewExpenseForm = (props) => {
   // const [expenseItem, setExpenseItem] = useState('');
   // const [expenseAmount, setExpenseAmount] = useState('');
   // const [expenseDate, setExpenseDate] = useState('');
@@ -13,39 +13,42 @@ const NewExpenseForm = () => {
     expenseDate: "",
   });
 
-  const handleExpenseItem = (e) => {
+  const expenseItemHandler = (e) => {
     setUserInput((prevState) => {
       return { ...prevState, expenseItem: e.target.value };
     });
   };
-  const handleExpenseAmount = (e) => {
+  const expenseAmountHandler = (e) => {
     setUserInput((prevState) => {
       return { ...prevState, expenseAmount: e.target.value };
     });
   };
-  const handleExpenseDate = (e) => {
+  const expenseDateHandler = (e) => {
     setUserInput((prevState) => {
       return { ...prevState, expenseDate: e.target.value };
     });
   };
-  const handleSubmit = (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
+    //assign the user's data from form to expenseData
     const expenseData = userInput;
-    console.log(expenseData);
+    //then pass it to function props.onSaveExpenseData from NewExpense(parent) Component
+    props.onSaveExpenseData(expenseData);
+    //and clear the form fields
     setUserInput(() => {
-        return { expenseItem: '', expenseAmount: '', expenseDate: '' }
+      return { expenseItem: "", expenseAmount: "", expenseDate: "" };
     });
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={submitHandler}>
       <Form.Group className="mb-3">
         <Form.Label>Expense Item</Form.Label>
         <Form.Control
           type="text"
           placeholder="Enter your expense item"
-          value={ userInput.expenseItem }
-          onChange={handleExpenseItem}
+          value={userInput.expenseItem}
+          onChange={expenseItemHandler}
         />
       </Form.Group>
 
@@ -55,8 +58,8 @@ const NewExpenseForm = () => {
           type="number"
           minLength="0.1"
           step="0.01"
-          value={ userInput.expenseAmount }
-          onChange={handleExpenseAmount}
+          value={userInput.expenseAmount}
+          onChange={expenseAmountHandler}
         />
       </Form.Group>
 
@@ -66,8 +69,8 @@ const NewExpenseForm = () => {
           type="date"
           min="2019-01-01"
           max="2022-12-31"
-          value={ userInput.expenseDate }
-          onChange={handleExpenseDate}
+          value={userInput.expenseDate}
+          onChange={expenseDateHandler}
         />
       </Form.Group>
 
