@@ -18,7 +18,6 @@ const ExpenseItem = ({ expenses }) => {
       );
     });
   };
-  console.log(filteredYear, filteredExpenses);
 
   return (
     <Card className="shadow rounded">
@@ -27,13 +26,15 @@ const ExpenseItem = ({ expenses }) => {
       </Card.Header>
       <Card.Body className="text-center bg-dark rounded-bottom card__body">
         <ExpenseFilter onChangeFilter={filterChangeHandler} />
-        {filteredExpenses.map((expense) => {
+
+        {/* Display the list of expenses here. . .  */}
+        {expenses.map((expense) => {
           return (
             <Row
               key={expense.id}
               className="bg-secondary shadow-lg m-2 p-3 rounded-pill align-items-center"
             >
-              <ExpenseDate expenseDate={expense.date} />
+              <ExpenseDate expenseDate={new Date(expense.date)} />
               <Col className="expense__item"> {expense.item} </Col>
               <Col className="expense__amount"> Php {expense.amount} </Col>
               <Col>

@@ -44,12 +44,15 @@ const NewExpenseForm = (props) => {
     //assign the user's data from form to expenseData
     const expenseData = {
       item: expenseItem,
-      amount: expenseDate,
+      amount: expenseAmount,
       date: expenseDate,
     };
     //then pass it to function props.onSaveExpenseData from NewExpense(parent) Component
     props.onSaveExpenseData(expenseData);
     //and clear the form fields
+    setExpenseItem("");
+    setExpenseAmount("");
+    setExpenseDate("");
   };
 
   return (

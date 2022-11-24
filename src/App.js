@@ -28,12 +28,11 @@ const App = () => {
 
   //add new expense from NewExpense(w/c contains the newExpense form)
   const addExpenseHandler = (expense) => {
-    //currently returning undefined, need to rework later
     setExpenses((prevExpenses) => {
       return [expense, ...prevExpenses];
     });
   };
-
+  console.log(expenses);
   return (
     <div className="container">
       <h1 className="text-center mt-4">My Expense Tracker App</h1>
