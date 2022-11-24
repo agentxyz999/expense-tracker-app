@@ -2,52 +2,64 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap/";
 
 const NewExpenseForm = (props) => {
-  // const [expenseItem, setExpenseItem] = useState('');
-  // const [expenseAmount, setExpenseAmount] = useState('');
-  // const [expenseDate, setExpenseDate] = useState('');
+  const [expenseItem, setExpenseItem] = useState("");
+  const [expenseAmount, setExpenseAmount] = useState("");
+  const [expenseDate, setExpenseDate] = useState("");
 
   //Alternative way of handling state
-  const [userInput, setUserInput] = useState({
-    expenseItem: "",
-    expenseAmount: "",
-    expenseDate: "",
-  });
+  // const [userInput, setUserInput] = useState({
+  //   item: "",
+  //   amount: "",
+  //   date: "",
+  // });
+
+  // const expenseItemHandler = (e) => {
+  //   setUserInput((prevState) => {
+  //     return { ...prevState, item: e.target.value };
+  //   });
+  // };
+  // const expenseAmountHandler = (e) => {
+  //   setUserInput((prevState) => {
+  //     return { ...prevState, amount: e.target.value };
+  //   });
+  // };
+  // const expenseDateHandler = (e) => {
+  //   setUserInput((prevState) => {
+  //     return { ...prevState, date: e.target.value };
+  //   });
+  // };
 
   const expenseItemHandler = (e) => {
-    setUserInput((prevState) => {
-      return { ...prevState, expenseItem: e.target.value };
-    });
+    setExpenseItem(e.target.value);
   };
   const expenseAmountHandler = (e) => {
-    setUserInput((prevState) => {
-      return { ...prevState, expenseAmount: e.target.value };
-    });
+    setExpenseAmount(e.target.value);
   };
   const expenseDateHandler = (e) => {
-    setUserInput((prevState) => {
-      return { ...prevState, expenseDate: e.target.value };
-    });
+    setExpenseDate(e.target.value);
   };
+
   const submitHandler = (e) => {
     e.preventDefault();
     //assign the user's data from form to expenseData
-    const expenseData = userInput;
+    const expenseData = {
+      item: expenseItem,
+      amount: expenseDate,
+      date: expenseDate,
+    };
     //then pass it to function props.onSaveExpenseData from NewExpense(parent) Component
     props.onSaveExpenseData(expenseData);
     //and clear the form fields
-    setUserInput(() => {
-      return { expenseItem: "", expenseAmount: "", expenseDate: "" };
-    });
   };
 
   return (
-    <Form onSubmit={submitHandler}>
+    <Form onSubmit={submitHandler} className="border border-light rounded p-3">
       <Form.Group className="mb-3">
         <Form.Label>Expense Item</Form.Label>
         <Form.Control
           type="text"
           placeholder="Enter your expense item"
-          value={userInput.expenseItem}
+          value={expenseItem}
           onChange={expenseItemHandler}
         />
       </Form.Group>
@@ -58,7 +70,7 @@ const NewExpenseForm = (props) => {
           type="number"
           minLength="0.1"
           step="0.01"
-          value={userInput.expenseAmount}
+          value={expenseAmount}
           onChange={expenseAmountHandler}
         />
       </Form.Group>
@@ -69,7 +81,7 @@ const NewExpenseForm = (props) => {
           type="date"
           min="2019-01-01"
           max="2022-12-31"
-          value={userInput.expenseDate}
+          value={expenseDate}
           onChange={expenseDateHandler}
         />
       </Form.Group>

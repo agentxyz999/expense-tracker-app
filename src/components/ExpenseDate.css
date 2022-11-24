@@ -1,25 +1,25 @@
 /* style to make the Date look like a calendar card */
-.expense__date{
-    max-width: 20vw;
+.expense__date {
+  max-width: 20vw;
 }
-.date__card{
-    display: flex;
-    flex-direction: column;
-    width: 130px;
-    height: 5.5rem;
-    border: 1px solid var(--white-color);
-    background-color: var(--dark-color);
-    color: var(--white-color);
-    border-radius: 20px;
-    align-items: center;
-    justify-content: center;
+.date__card {
+  display: flex;
+  flex-direction: column;
+  width: 130px;
+  height: 5.5rem;
+  border: 2px solid var(--primary-color);
+  background-color: var(--dark-color);
+  color: var(--white-color);
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
 }
-.month{
-    font-size: 1.2rem;
+.month {
+  font-size: 1.2rem;
 }
-.year{
-    font-size: 0.8rem;
+.year {
+  font-size: 0.8rem;
 }
-.day{
-    font-size: 1.5rem;
+.day {
+  font-size: 1.5rem;
 }
