@@ -38,7 +38,7 @@ const App = () => {
       return [expense, ...prevExpenses];
     });
   };
-  console.log(expenses);
+  console.table(expenses);
   return (
     <div className="container">
       <h1 className="text-center mt-4">My Expense Tracker App</h1>

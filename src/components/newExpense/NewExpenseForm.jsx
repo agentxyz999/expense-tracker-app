@@ -36,7 +36,7 @@ const NewExpenseForm = (props) => {
     setExpenseAmount(e.target.value);
   };
   const expenseDateHandler = (e) => {
-    setExpenseDate(new Date(e.target.value));
+    setExpenseDate(e.target.value);
   };
 
   const submitHandler = (e) => {
@@ -45,7 +45,7 @@ const NewExpenseForm = (props) => {
     const expenseData = {
       item: expenseItem,
       amount: expenseAmount,
-      date: expenseDate,
+      date: new Date(expenseDate),
     };
     //then pass it to function props.onSaveExpenseData from NewExpense(parent) Component
     props.onSaveExpenseData(expenseData);

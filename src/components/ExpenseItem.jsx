@@ -32,7 +32,7 @@ const ExpenseItem = ({ expenses }) => {
                 key={expense.id}
                 className="bg-secondary shadow-lg m-2 p-3 rounded-pill align-items-center"
               >
-                <ExpenseDate expenseDate={new Date(expense.date)} />
+                <ExpenseDate expenseDate={expense.date} />
                 <Col className="expense__item"> {expense.item} </Col>
                 <Col className="expense__amount"> Php {expense.amount} </Col>
                 <Col>
