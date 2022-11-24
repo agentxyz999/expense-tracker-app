@@ -6,18 +6,13 @@ import ExpenseFilter from "./ExpenseFilter";
 
 const ExpenseItem = ({ expenses }) => {
   const [filteredYear, setFilteredYear] = useState("2022");
-  const [filteredExpenses, setFilteredExpenses] = useState(expenses);
-
   //it will run on ExpenseFilter.jsx
   const filterChangeHandler = (selectedYear) => {
-    const filtered = expenses;
     setFilteredYear(selectedYear);
-    setFilteredExpenses(() => {
-      return filtered.filter(
-        (data) => data.year.toString() === filteredYear.toString()
-      );
-    });
   };
+  const filteredExpenses = expenses.filter((expense) => {
+    return expense.date.getFullYear().toString() === filteredYear;
+  });
 
   return (
     <Card className="shadow rounded">
@@ -27,22 +22,26 @@ const ExpenseItem = ({ expenses }) => {
       <Card.Body className="text-center bg-dark rounded-bottom card__body">
         <ExpenseFilter onChangeFilter={filterChangeHandler} />
 
-        {/* Display the list of expenses here. . .  */}
-        {expenses.map((expense) => {
-          return (
-            <Row
-              key={expense.id}
-              className="bg-secondary shadow-lg m-2 p-3 rounded-pill align-items-center"
-            >
-              <ExpenseDate expenseDate={new Date(expense.date)} />
-              <Col className="expense__item"> {expense.item} </Col>
-              <Col className="expense__amount"> Php {expense.amount} </Col>
-              <Col>
-                <Button>Change</Button>
-              </Col>
-            </Row>
-          );
-        })}
+        {/* Display the list of filtered expenses here. . .  */}
+        {filteredExpenses.length === 0 ? (
+          <p className="lead text-warning">No data available.</p>
+        ) : (
+          filteredExpenses.map((expense) => {
+            return (
+              <Row
+                key={expense.id}
+                className="bg-secondary shadow-lg m-2 p-3 rounded-pill align-items-center"
+              >
+                <ExpenseDate expenseDate={new Date(expense.date)} />
+                <Col className="expense__item"> {expense.item} </Col>
+                <Col className="expense__amount"> Php {expense.amount} </Col>
+                <Col>
+                  <Button>Change</Button>
+                </Col>
+              </Row>
+            );
+          })
+        )}
       </Card.Body>
     </Card>
   );

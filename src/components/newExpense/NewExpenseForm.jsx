@@ -36,7 +36,7 @@ const NewExpenseForm = (props) => {
     setExpenseAmount(e.target.value);
   };
   const expenseDateHandler = (e) => {
-    setExpenseDate(e.target.value);
+    setExpenseDate(new Date(e.target.value));
   };
 
   const submitHandler = (e) => {

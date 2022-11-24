@@ -21,6 +21,12 @@ const DUMMY_EXP = [
     amount: 1000,
     date: new Date(2019, 10, 6),
   },
+  {
+    id: 4,
+    item: "Mouse",
+    amount: 3500,
+    date: new Date(2022, 5, 30),
+  },
 ];
 
 const App = () => {
