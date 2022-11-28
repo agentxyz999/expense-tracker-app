@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import NewExpenseForm from "./NewExpenseForm";
 
 const NewExpense = (props) => {
-  const [toggleForm, setToggleForm] = useState(false);
   const saveExpenseDataHandler = (submittedExpenseData) => {
     const expenseData = {
       ...submittedExpenseData,
@@ -12,12 +11,7 @@ const NewExpense = (props) => {
   };
   return (
     <div className="container mt-3 mb-3">
-    {
-      toggleForm ? 
-        <NewExpenseForm onSaveExpenseData={saveExpenseDataHandler} /> :
-        <Button>Add Expense</Button>
-    }
-      
+       <NewExpenseForm onSaveExpenseData={saveExpenseDataHandler} />
     </div>
   );
 };
