@@ -5,6 +5,7 @@ const NewExpenseForm = (props) => {
   const [expenseItem, setExpenseItem] = useState("");
   const [expenseAmount, setExpenseAmount] = useState("");
   const [expenseDate, setExpenseDate] = useState("");
+  const [showForm, setShowForm] = useState(false);
 
   //Alternative way of handling state
   // const [userInput, setUserInput] = useState({
@@ -55,7 +56,7 @@ const NewExpenseForm = (props) => {
     setExpenseDate("");
   };
 
-  return (
+  return showForm ? (
     <Form onSubmit={submitHandler} className="border border-light rounded p-3">
       <Form.Group className="mb-3">
         <Form.Label>Expense Item</Form.Label>
@@ -92,7 +93,27 @@ const NewExpenseForm = (props) => {
       <Button variant="primary" type="submit">
         Submit
       </Button>
+
+      <Button
+        variant="light"
+        className="m-2"
+        onClick={() => {
+          setShowForm(false);
+        }}
+      >
+        {" "}
+        Cancel
+      </Button>
     </Form>
+  ) : (
+    <Button
+      variant="warning text-dark"
+      onClick={() => {
+        setShowForm(true);
+      }}
+    >
+      Add Expense
+    </Button>
   );
 };
 
