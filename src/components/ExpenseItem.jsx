@@ -4,14 +4,13 @@ import { Card, Row, Col, Button } from "react-bootstrap";
 import ExpenseDate from "./ExpenseDate";
 import ExpenseFilter from "./ExpenseFilter";
 
-const ExpenseItem = ({ expenses }) => {
+const ExpenseItem = ({ expenses, deleteExpense }) => {
   const [filteredYear, setFilteredYear] = useState("2022");
   //it will run on ExpenseFilter.jsx
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
   };
   const filteredExpenses = expenses.filter((expense) => {
-    console.log(new Date(expense.date).getFullYear().toString());
     return new Date(expense.date).getFullYear().toString() === filteredYear;
   });
 
@@ -40,7 +39,7 @@ const ExpenseItem = ({ expenses }) => {
                   <Button
                     variant="danger"
                     onClick={() => {
-                      console.log(expense.id);
+                      deleteExpense(expense.id);
                     }}
                   >
                     Delete
