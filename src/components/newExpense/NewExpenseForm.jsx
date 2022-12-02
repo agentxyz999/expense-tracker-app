@@ -56,6 +56,7 @@ const NewExpenseForm = (props) => {
     setExpenseDate("");
   };
 
+  // if showForm is true, the Form will be show
   return showForm ? (
     <Form onSubmit={submitHandler} className="border border-light rounded p-3">
       <Form.Group className="mb-3">
@@ -86,12 +87,13 @@ const NewExpenseForm = (props) => {
           min="2019-01-01"
           max="2022-12-31"
           value={expenseDate}
+          required
           onChange={expenseDateHandler}
         />
       </Form.Group>
 
       <Button variant="primary" type="submit">
-        Submit
+        Save
       </Button>
 
       <Button

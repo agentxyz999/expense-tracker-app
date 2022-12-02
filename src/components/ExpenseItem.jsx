@@ -11,7 +11,8 @@ const ExpenseItem = ({ expenses }) => {
     setFilteredYear(selectedYear);
   };
   const filteredExpenses = expenses.filter((expense) => {
-    return expense.date.getFullYear().toString() === filteredYear;
+    console.log(new Date(expense.date).getFullYear().toString());
+    return new Date(expense.date).getFullYear().toString() === filteredYear;
   });
 
   return (
@@ -32,11 +33,18 @@ const ExpenseItem = ({ expenses }) => {
                 key={expense.id}
                 className="bg-secondary shadow-lg m-2 p-3 rounded-pill align-items-center"
               >
-                <ExpenseDate expenseDate={expense.date} />
+                <ExpenseDate expenseDate={new Date(expense.date)} />
                 <Col className="expense__item"> {expense.item} </Col>
                 <Col className="expense__amount"> Php {expense.amount} </Col>
                 <Col>
-                  <Button>Change</Button>
+                  <Button
+                    variant="danger"
+                    onClick={() => {
+                      console.log(expense.id);
+                    }}
+                  >
+                    Delete
+                  </Button>
                 </Col>
               </Row>
             );
