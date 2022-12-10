@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import "./ExpenseItem.css";
 import { Card, Row, Col, Button, Form } from "react-bootstrap";
 import { GrClose } from "react-icons/gr";
+import { AiTwotoneDelete, AiOutlineEdit, AiFillSave } from "react-icons/ai";
 import ExpenseDate from "./ExpenseDate";
 import ExpenseFilter from "./ExpenseFilter";
 
 const ExpenseItem = ({ expenses, deleteExpense, saveEditedExpense }) => {
   const [filteredYear, setFilteredYear] = useState("2022");
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedExpenseItem, setEditedExpenseItem] = useState("");
   //it will run on ExpenseFilter.jsx
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
@@ -16,6 +15,8 @@ const ExpenseItem = ({ expenses, deleteExpense, saveEditedExpense }) => {
   const filteredExpenses = expenses.filter((expense) => {
     return new Date(expense.date).getFullYear().toString() === filteredYear;
   });
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedExpenseItem, setEditedExpenseItem] = useState("");
 
   return (
     <Card className="shadow rounded">
@@ -41,6 +42,7 @@ const ExpenseItem = ({ expenses, deleteExpense, saveEditedExpense }) => {
                     <Form.Control
                       type="text"
                       placeholder={expense.item}
+                      defaultValue={expense.item}
                       onChange={(e) => {
                         setEditedExpenseItem(e.target.value);
                       }}
@@ -59,21 +61,20 @@ const ExpenseItem = ({ expenses, deleteExpense, saveEditedExpense }) => {
                       deleteExpense(expense.id);
                     }}
                   >
-                    Delete
+                    <AiTwotoneDelete />
                   </Button>
 
-                  {/* Edit */}
                   {isEditing ? (
+                    // Save Edited
                     <>
                       <Button
                         variant="success"
                         onClick={() => {
                           setIsEditing(false);
                           saveEditedExpense(expense.id, editedExpenseItem);
-                          setEditedExpenseItem("");
                         }}
                       >
-                        Save
+                        <AiFillSave />
                       </Button>
                       <Button
                         variant="outline-light"
@@ -84,13 +85,14 @@ const ExpenseItem = ({ expenses, deleteExpense, saveEditedExpense }) => {
                       </Button>
                     </>
                   ) : (
+                    // Edit
                     <Button
                       variant="outline-warning"
                       onClick={() => {
                         setIsEditing(true);
                       }}
                     >
-                      Edit
+                      <AiOutlineEdit />
                     </Button>
                   )}
                 </Col>
