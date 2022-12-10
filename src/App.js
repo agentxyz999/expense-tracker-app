@@ -22,9 +22,19 @@ const App = () => {
 
   //this will delete an expense
   const deleteExpenseHandler = (id) => {
-    console.log(id);
     setExpenses((prevExpenses) => {
       return prevExpenses.filter((item) => item.id !== id);
+    });
+  };
+  const saveEditedExpense = (id, item) => {
+    // the parameters names are important here(id and name) to override the object
+    setExpenses((prevExpenses) => {
+      return prevExpenses.map((expense) => {
+        if (expense.id === id) {
+          return { ...expense, item };
+        }
+        return expense;
+      });
     });
   };
 
@@ -32,7 +42,11 @@ const App = () => {
     <div className="container">
       <h1 className="text-center mt-4">My Expense Tracker App</h1>
       <NewExpense onAddExpense={addExpenseHandler} />
-      <ExpenseItem expenses={expenses} deleteExpense={deleteExpenseHandler} />
+      <ExpenseItem
+        expenses={expenses}
+        deleteExpense={deleteExpenseHandler}
+        saveEditedExpense={saveEditedExpense}
+      />
     </div>
   );
 };

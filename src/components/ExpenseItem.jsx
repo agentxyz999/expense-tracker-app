@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import "./ExpenseItem.css";
-import { Card, Row, Col, Button } from "react-bootstrap";
+import { Card, Row, Col, Button, Form } from "react-bootstrap";
+import { GrClose } from "react-icons/gr";
 import ExpenseDate from "./ExpenseDate";
 import ExpenseFilter from "./ExpenseFilter";
 
-const ExpenseItem = ({ expenses, deleteExpense }) => {
+const ExpenseItem = ({ expenses, deleteExpense, saveEditedExpense }) => {
   const [filteredYear, setFilteredYear] = useState("2022");
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedExpenseItem, setEditedExpenseItem] = useState("");
   //it will run on ExpenseFilter.jsx
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
@@ -33,17 +36,63 @@ const ExpenseItem = ({ expenses, deleteExpense }) => {
                 className="bg-secondary shadow-lg m-2 p-3 rounded-pill align-items-center"
               >
                 <ExpenseDate expenseDate={new Date(expense.date)} />
-                <Col className="expense__item"> {expense.item} </Col>
+                {isEditing ? (
+                  <Col className="expense__item">
+                    <Form.Control
+                      type="text"
+                      placeholder={expense.item}
+                      onChange={(e) => {
+                        setEditedExpenseItem(e.target.value);
+                      }}
+                    />
+                  </Col>
+                ) : (
+                  <Col className="expense__item"> {expense.item} </Col>
+                )}
                 <Col className="expense__amount"> Php {expense.amount} </Col>
                 <Col>
+                  {/* Delete */}
                   <Button
                     variant="danger"
+                    className="m-2"
                     onClick={() => {
                       deleteExpense(expense.id);
                     }}
                   >
                     Delete
                   </Button>
+
+                  {/* Edit */}
+                  {isEditing ? (
+                    <>
+                      <Button
+                        variant="success"
+                        onClick={() => {
+                          setIsEditing(false);
+                          saveEditedExpense(expense.id, editedExpenseItem);
+                          setEditedExpenseItem("");
+                        }}
+                      >
+                        Save
+                      </Button>
+                      <Button
+                        variant="outline-light"
+                        className="m-2"
+                        onClick={() => setIsEditing(false)}
+                      >
+                        <GrClose />
+                      </Button>
+                    </>
+                  ) : (
+                    <Button
+                      variant="outline-warning"
+                      onClick={() => {
+                        setIsEditing(true);
+                      }}
+                    >
+                      Edit
+                    </Button>
+                  )}
                 </Col>
               </Row>
             );
