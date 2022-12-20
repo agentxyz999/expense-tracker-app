@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ExpenseItem from "./components/ExpenseItem";
+import ExpenseItemList from "./components/ExpenseItemList";
 import NewExpense from "./components/newExpense/NewExpense";
 
 const App = () => {
@@ -42,7 +42,7 @@ const App = () => {
     <div className="container">
       <h1 className="text-center mt-4">My Expense Tracker App</h1>
       <NewExpense onAddExpense={addExpenseHandler} />
-      <ExpenseItem
+      <ExpenseItemList
         expenses={expenses}
         deleteExpense={deleteExpenseHandler}
         saveEditedExpense={saveEditedExpense}

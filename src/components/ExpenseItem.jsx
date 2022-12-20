@@ -1,107 +1,90 @@
 import React, { useState } from "react";
-import "./ExpenseItem.css";
-import { Card, Row, Col, Button, Form } from "react-bootstrap";
+import { Row, Col, Button, Form } from "react-bootstrap";
 import { GrClose } from "react-icons/gr";
 import { AiTwotoneDelete, AiOutlineEdit, AiFillSave } from "react-icons/ai";
 import ExpenseDate from "./ExpenseDate";
-import ExpenseFilter from "./ExpenseFilter";
 
-const ExpenseItem = ({ expenses, deleteExpense, saveEditedExpense }) => {
-  const [filteredYear, setFilteredYear] = useState("2022");
-  //it will run on ExpenseFilter.jsx
-  const filterChangeHandler = (selectedYear) => {
-    setFilteredYear(selectedYear);
-  };
-  const filteredExpenses = expenses.filter((expense) => {
-    return new Date(expense.date).getFullYear().toString() === filteredYear;
-  });
+const ExpenseItem = ({
+  expenseItem,
+  expenseID,
+  expenseDate,
+  expenseAmt,
+  deleteExpense,
+  saveEditedExpense,
+}) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedExpenseItem, setEditedExpenseItem] = useState("");
-
+  //the save button is disbled when there is no change with the text
+  const [saveBtnState, setSaveBtnState] = useState(true);
   return (
-    <Card className="shadow rounded">
-      <Card.Header className="text-center card__header">
-        <h2>Expenses</h2>
-      </Card.Header>
-      <Card.Body className="text-center bg-dark rounded-bottom card__body">
-        <ExpenseFilter onChangeFilter={filterChangeHandler} />
+    <Row
+      key={expenseID}
+      className="bg-secondary shadow-lg m-2 p-3 rounded-pill align-items-center"
+    >
+      <ExpenseDate expenseDate={new Date(expenseDate)} />
+      {isEditing ? (
+        <Col className="expense__item">
+          <Form.Control
+            type="text"
+            placeholder={expenseItem}
+            defaultValue={expenseItem}
+            onChange={(e) => {
+              setEditedExpenseItem(e.target.value);
+              setSaveBtnState(false);
+            }}
+          />
+        </Col>
+      ) : (
+        <Col className="expense__item"> {expenseItem} </Col>
+      )}
+      <Col className="expense__amount"> Php {expenseAmt} </Col>
+      <Col>
+        {/* Delete */}
+        <Button
+          variant="danger"
+          className="m-2"
+          onClick={() => {
+            deleteExpense(expenseID);
+          }}
+        >
+          <AiTwotoneDelete />
+        </Button>
 
-        {/* Display the list of filtered expenses here. . .  */}
-        {filteredExpenses.length === 0 ? (
-          <p className="lead text-warning">No data available.</p>
+        {isEditing ? (
+          // Save Edited
+          <>
+            <Button
+              variant="success"
+              onClick={() => {
+                setIsEditing(false);
+                saveEditedExpense(expenseID, editedExpenseItem);
+                setSaveBtnState(true);
+              }}
+              disabled={saveBtnState}
+            >
+              <AiFillSave />
+            </Button>
+            <Button
+              variant="outline-light"
+              className="m-2"
+              onClick={() => setIsEditing(false)}
+            >
+              <GrClose />
+            </Button>
+          </>
         ) : (
-          filteredExpenses.map((expense) => {
-            return (
-              <Row
-                key={expense.id}
-                className="bg-secondary shadow-lg m-2 p-3 rounded-pill align-items-center"
-              >
-                <ExpenseDate expenseDate={new Date(expense.date)} />
-                {isEditing ? (
-                  <Col className="expense__item">
-                    <Form.Control
-                      type="text"
-                      placeholder={expense.item}
-                      defaultValue={expense.item}
-                      onChange={(e) => {
-                        setEditedExpenseItem(e.target.value);
-                      }}
-                    />
-                  </Col>
-                ) : (
-                  <Col className="expense__item"> {expense.item} </Col>
-                )}
-                <Col className="expense__amount"> Php {expense.amount} </Col>
-                <Col>
-                  {/* Delete */}
-                  <Button
-                    variant="danger"
-                    className="m-2"
-                    onClick={() => {
-                      deleteExpense(expense.id);
-                    }}
-                  >
-                    <AiTwotoneDelete />
-                  </Button>
-
-                  {isEditing ? (
-                    // Save Edited
-                    <>
-                      <Button
-                        variant="success"
-                        onClick={() => {
-                          setIsEditing(false);
-                          saveEditedExpense(expense.id, editedExpenseItem);
-                        }}
-                      >
-                        <AiFillSave />
-                      </Button>
-                      <Button
-                        variant="outline-light"
-                        className="m-2"
-                        onClick={() => setIsEditing(false)}
-                      >
-                        <GrClose />
-                      </Button>
-                    </>
-                  ) : (
-                    // Edit
-                    <Button
-                      variant="outline-warning"
-                      onClick={() => {
-                        setIsEditing(true);
-                      }}
-                    >
-                      <AiOutlineEdit />
-                    </Button>
-                  )}
-                </Col>
-              </Row>
-            );
-          })
+          // Edit
+          <Button
+            variant="outline-warning"
+            onClick={() => {
+              setIsEditing(true);
+            }}
+          >
+            <AiOutlineEdit />
+          </Button>
         )}
-      </Card.Body>
-    </Card>
+      </Col>
+    </Row>
   );
 };
 
