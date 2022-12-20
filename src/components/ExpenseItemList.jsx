@@ -29,6 +29,7 @@ const ExpenseItemList = ({ expenses, deleteExpense, saveEditedExpense }) => {
           filteredExpenses.map((expense) => {
             return (
               <ExpenseItem
+                key={expense.id}
                 expenseItem={expense.item}
                 expenseID={expense.id}
                 expenseDate={expense.date}

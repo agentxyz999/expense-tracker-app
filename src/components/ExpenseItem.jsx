@@ -9,8 +9,8 @@ const ExpenseItem = ({
   expenseID,
   expenseDate,
   expenseAmt,
-  deleteExpense,
-  saveEditedExpense,
+  deleteExpense, //from App.js
+  saveEditedExpense, //from App.js
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedExpenseItem, setEditedExpenseItem] = useState("");
