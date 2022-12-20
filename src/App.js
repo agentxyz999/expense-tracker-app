@@ -26,6 +26,7 @@ const App = () => {
       return prevExpenses.filter((item) => item.id !== id);
     });
   };
+  //this will handle the saving of edited item
   const saveEditedExpense = (id, item) => {
     // the parameters names are important here(id and name) to override the object
     setExpenses((prevExpenses) => {
