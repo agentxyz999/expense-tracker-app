@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Row, Col, Button, Form } from "react-bootstrap";
 import { GrClose } from "react-icons/gr";
 import { AiTwotoneDelete, AiOutlineEdit, AiFillSave } from "react-icons/ai";
-import ExpenseDate from "./ExpenseDate";
+import ExpenseDate from "../ExpenseDate/ExpenseDate";
 
 const ExpenseItem = ({
   expenseItem,
