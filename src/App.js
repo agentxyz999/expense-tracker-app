@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ExpenseItemList from "./components/Expenses/ExpenseItemList";
-import NewExpense from "./components/newExpense/NewExpense";
+import NewExpense from "./components/NewExpense/NewExpense";
 
 const App = () => {
   //this will get the expenses from browser's local storage OR initial to an empty array
