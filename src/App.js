@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ExpenseItemList from "./components/Expenses/ExpenseItemList";
 import NewExpense from "./components/NewExpense/NewExpense";
-import Chart from "./components/Chart/Chart";
+// import Chart from "./components/Chart/Chart";
 
 const App = () => {
   //this will get the expenses from browser's local storage OR initial to an empty array
@@ -44,7 +44,7 @@ const App = () => {
     <div className="container">
       <h1 className="text-center mt-4">My Expense Tracker App</h1>
       <NewExpense onAddExpense={addExpenseHandler} />
-      <Chart />
+      {/* <Chart /> */}
       <ExpenseItemList
         expenses={expenses}
         deleteExpense={deleteExpenseHandler}
