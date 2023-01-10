@@ -27,7 +27,7 @@ const Chart = () => {
       },
       title: {
         display: true,
-        text: "Expenses by Year",
+        text: "My Expenses by Year",
       },
     },
   };
