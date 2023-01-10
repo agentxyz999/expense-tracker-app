@@ -5,7 +5,7 @@ import ExpenseFilter from "../ExpenseFilter/ExpenseFilter";
 import ExpenseItem from "../Expenses/ExpenseItem";
 
 const ExpenseItemList = ({ expenses, deleteExpense, saveEditedExpense }) => {
-  const [filteredYear, setFilteredYear] = useState("2022");
+  const [filteredYear, setFilteredYear] = useState("2023");
   //it will run on ExpenseFilter.jsx
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
