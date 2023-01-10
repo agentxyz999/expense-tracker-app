@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ExpenseItemList from "./components/Expenses/ExpenseItemList";
-import NewExpense from "./components/NewExpense/NewExpense";
+import NewExpense from "./components/newExpense/NewExpense";
 import Chart from "./components/Chart/Chart";
 
 const App = () => {

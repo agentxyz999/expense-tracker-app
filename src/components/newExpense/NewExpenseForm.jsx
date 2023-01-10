@@ -103,7 +103,6 @@ const NewExpenseForm = (props) => {
           setShowForm(false);
         }}
       >
-        {" "}
         Cancel
       </Button>
     </Form>
