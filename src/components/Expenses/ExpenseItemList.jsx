@@ -13,7 +13,6 @@ const ExpenseItemList = ({ expenses, deleteExpense, saveEditedExpense }) => {
   const filteredExpenses = expenses.filter((expense) => {
     return new Date(expense.date).getFullYear().toString() === filteredYear;
   });
-
   return (
     <Card className="shadow rounded">
       <Card.Header className="text-center card__header">

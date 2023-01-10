@@ -39,7 +39,6 @@ const App = () => {
       });
     });
   };
-  console.log(expenses);
 
   return (
     <div className="container">
