@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -32,27 +32,49 @@ const Chart = ({ filteredExpenses }) => {
     },
   };
 
-  const labels = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+  const initialState = [
+    { month: "January", amount: 0 },
+    { month: "February", amount: 0 },
+    { month: "March", amount: 0 },
+    { month: "April", amount: 0 },
+    { month: "May", amount: 0 },
+    { month: "June", amount: 0 },
+    { month: "July", amount: 0 },
+    { month: "August", amount: 0 },
+    { month: "September", amount: 0 },
+    { month: "October", amount: 0 },
+    { month: "November", amount: 0 },
+    { month: "December", amount: 0 },
   ];
 
+  const [labels, setLabels] = useState([]);
+
+  useEffect(() => {
+    const filteredData = initialState.map((state) => {
+      const dataItem = filteredExpenses.find((d) => {
+        const monthName = new Date(d.date);
+        return (
+          monthName.toLocaleString("en-US", { month: "long" }) === state.month
+        );
+      });
+      if (dataItem) {
+        return { ...state, amount: dataItem.amount };
+      }
+      return state;
+    });
+    setLabels(filteredData);
+  }, [filteredExpenses]);
+
   const data = {
-    labels,
+    labels: labels.map((label) => {
+      return label.month;
+    }),
     datasets: [
       {
         label: "Amount in Peso",
-        data: [332, 232, 231, 412, 223, 114, 242, 564, 343, 231, 76, 200],
+        data: labels.map((label) => {
+          return label.amount;
+        }),
         backgroundColor: [
           "rgba(255, 99, 132, 0.3)",
           "rgba(54, 162, 235, 0.3)",
