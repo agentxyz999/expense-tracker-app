@@ -39,16 +39,19 @@ const App = () => {
       });
     });
   };
+  //this will pass filteredExpenses from <ExpenseItemList/> to <Chart />
+  const [filteredExpenses, setFilteredExpenses] = useState([]);
 
   return (
     <div className="container">
       <h1 className="text-center mt-4">My Expense Tracker App</h1>
       <NewExpense onAddExpense={addExpenseHandler} />
-      <Chart />
+      <Chart filteredExpenses={filteredExpenses} />
       <ExpenseItemList
         expenses={expenses}
         deleteExpense={deleteExpenseHandler}
         saveEditedExpense={saveEditedExpense}
+        setFilteredExpenses={setFilteredExpenses}
       />
     </div>
   );

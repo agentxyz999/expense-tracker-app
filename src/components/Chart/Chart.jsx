@@ -18,7 +18,7 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-const Chart = () => {
+const Chart = ({ filteredExpenses }) => {
   const options = {
     responsive: true,
     plugins: {
@@ -84,6 +84,7 @@ const Chart = () => {
       },
     ],
   };
+
   return <Bar options={options} data={data} />;
 };
 

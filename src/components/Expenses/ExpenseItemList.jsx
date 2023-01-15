@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ExpenseItemList.css";
 import { Card } from "react-bootstrap";
 import ExpenseFilter from "../ExpenseFilter/ExpenseFilter";
 import ExpenseItem from "../Expenses/ExpenseItem";
 
-const ExpenseItemList = ({ expenses, deleteExpense, saveEditedExpense }) => {
+const ExpenseItemList = ({
+  expenses,
+  deleteExpense,
+  saveEditedExpense,
+  setFilteredExpenses, //useState from App.js to pass data to Charts component
+}) => {
   const [filteredYear, setFilteredYear] = useState("2023");
   //it will run on ExpenseFilter.jsx
   const filterChangeHandler = (selectedYear) => {
@@ -13,6 +18,12 @@ const ExpenseItemList = ({ expenses, deleteExpense, saveEditedExpense }) => {
   const filteredExpenses = expenses.filter((expense) => {
     return new Date(expense.date).getFullYear().toString() === filteredYear;
   });
+
+  //re-renders when filteredYear change then call the function from App.js
+  useEffect(() => {
+    setFilteredExpenses(filteredExpenses);
+  }, [filteredYear]);
+
   return (
     <Card className="shadow rounded">
       <Card.Header className="text-center card__header">
