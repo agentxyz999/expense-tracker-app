@@ -8,7 +8,7 @@ h2 {
 .expense__item {
   font-size: 1.4rem;
   font-weight: bold;
-  color: var(--white-color);
+  color: #ffc107;
 }
 .expense__item {
   max-width: 60%;
@@ -27,4 +27,49 @@ h2 {
 }
 .card__body {
   background: var(--light-color);
+}
+
+/*+++++++ Media Queries ++++++*/
+
+/* Extra small devices(phones, 600px and down) */
+@media only screen and (max-width: 612px) {
+  .expense__item {
+    max-width: 100%;
+    font-size: 20px;
+  }
+  .expense__amount {
+    min-width: 100%;
+    max-height: 4rem;
+    font-size: 22px;
+  }
+}
+/* Large Phones */
+@media only screen and (min-width: 612px) {
+  .expense__item {
+    min-width: 100%;
+  }
+  .expense__amount {
+    min-width: 100%;
+    max-height: 4rem;
+    font-size: 22px;
+  }
+}
+/* Tablets */
+@media only screen and (min-width: 768px) {
+  .expense__item {
+    min-width: 70%;
+    margin-left: 10px;
+  }
+  .expense__amount {
+    margin-top: 10px;
+  }
+}
+/* Large devices laptops and desktops */
+@media only screen and (min-width: 992px) {
+  .expense__item {
+    min-width: 20%;
+  }
+  .expense__amount {
+    min-width: 10rem;
+  }
 }

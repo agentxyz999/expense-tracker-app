@@ -28,3 +28,6 @@ h1 {
   --light-color: #4b4b4b;
   --dark-color: #212529;
 }
+body {
+  background: rgba(253, 227, 167, 0.5);
+}

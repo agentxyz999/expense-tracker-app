@@ -43,17 +43,30 @@ const App = () => {
   };
 
   return (
-    <div className="container">
-      <h1 className="text-center mt-4">My Expense Tracker App</h1>
-      <NewExpense onAddExpense={addExpenseHandler} />
-      <ExpenseItemList
-        expenses={expenses}
-        deleteExpense={deleteExpenseHandler}
-        saveEditedExpense={saveEditedExpense}
-        setFilteredExpenses={setFilteredExpenses}
-      />
-      <Chart filteredExpenses={filteredExpenses} />
-    </div>
+    <>
+      <div className="container expense__container">
+        <h1 className="text-center mt-4">My Expense Tracker App</h1>
+        <NewExpense onAddExpense={addExpenseHandler} />
+        <ExpenseItemList
+          expenses={expenses}
+          deleteExpense={deleteExpenseHandler}
+          saveEditedExpense={saveEditedExpense}
+          setFilteredExpenses={setFilteredExpenses}
+        />
+      </div>
+      <div
+        className="container"
+        style={{
+          outline: "2px solid #ffd2b9",
+          borderRadius: "10px",
+          marginTop: "10px",
+          marginBottom: "10px",
+          padding: "10px",
+        }}
+      >
+        <Chart filteredExpenses={filteredExpenses} />
+      </div>
+    </>
   );
 };
 

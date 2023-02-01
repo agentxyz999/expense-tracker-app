@@ -19,7 +19,8 @@ const ExpenseItem = ({
   return (
     <Row
       key={expenseID}
-      className="bg-secondary shadow-lg m-2 p-3 rounded-pill align-items-center"
+      className="bg-secondary shadow-lg m-2 p-3 rounded align-items-center"
+      id="expense__container"
     >
       <ExpenseDate expenseDate={new Date(expenseDate)} />
       {isEditing ? (

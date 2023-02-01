@@ -23,3 +23,66 @@
 .day {
   font-size: 1.5rem;
 }
+
+/*+++++++ Media Queries ++++++++++++*/
+
+/* Extra small devices(phones, 600px and down) */
+@media only screen and (max-width: 612px) {
+  .expense__date {
+    max-width: 100vw;
+  }
+  .date__card {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    min-width: 68vw;
+    height: 3rem;
+  }
+}
+/* Large Phones */
+@media only screen and (min-width: 612px) {
+  .expense__date {
+    max-width: 55vw;
+  }
+  .date__card {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    min-width: 26rem;
+    height: 3rem;
+    padding: 1 rem 0;
+  }
+}
+/* Tablets */
+@media only screen and (min-width: 768px) {
+  .expense__date {
+    max-width: 20vw;
+  }
+  .date__card {
+    display: flex;
+    flex-direction: column;
+    min-width: 20vw;
+    min-height: 10rem;
+    border: 2px solid var(--primary-color);
+    background-color: var(--dark-color);
+    color: var(--white-color);
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+  .month {
+    font-size: 1.5rem;
+  }
+  .year {
+    font-size: 1rem;
+  }
+  .day {
+    font-size: 1.8rem;
+  }
+}
+/* Large devices laptops and desktops */
+@media only screen and (min-width: 992px) {
+  .expense__date {
+    max-width: 20vw;
+  }
+}

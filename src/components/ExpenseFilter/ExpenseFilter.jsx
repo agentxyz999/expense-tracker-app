@@ -7,9 +7,9 @@ const ExpenseFilter = (props) => {
   };
   return (
     <Container className="d-flex justify-content-end p-2 mb-2">
-      <Form.Label className="p-2 text-white">Filter by Year</Form.Label>
+      <Form.Label className="p-2 text-warning">Filter by Year</Form.Label>
       <Form.Select
-        className="w-25"
+        style={{ width: "100px" }}
         value={props.selectedYear}
         onChange={selectionHandler}
       >

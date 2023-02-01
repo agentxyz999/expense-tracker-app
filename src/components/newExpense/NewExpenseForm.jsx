@@ -56,7 +56,7 @@ const NewExpenseForm = (props) => {
     setExpenseDate("");
   };
 
-  // if showForm is true, the Form will be show
+  // if showForm is true, the Form will be shown
   return showForm ? (
     <Form onSubmit={submitHandler} className="border border-light rounded p-3">
       <Form.Group className="mb-3">
