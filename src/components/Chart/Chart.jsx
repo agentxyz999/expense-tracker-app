@@ -48,23 +48,24 @@ const Chart = ({ filteredExpenses }) => {
   ];
 
   const [labels, setLabels] = useState([]);
-
+  // this useEffect will set the filteredExpenses from App.js into initialState
+  // and get the total amount foreach month if the expenses have the same month
   useEffect(() => {
     const filteredData = initialState.map((state) => {
-      const dataItem = filteredExpenses.find((d) => {
-        const monthName = new Date(d.date);
-        return (
-          monthName.toLocaleString("en-US", { month: "long" }) === state.month
-        );
+      let totalAmount = 0;
+      filteredExpenses.forEach((d) => {
+        const monthName = new Date(d.date).toLocaleString("en-US", {
+          month: "long",
+        });
+        if (monthName === state.month) {
+          totalAmount += parseInt(d.amount);
+        }
       });
-      if (dataItem) {
-        return { ...state, amount: dataItem.amount };
-      }
-      return state;
+      return { ...state, amount: totalAmount };
     });
     setLabels(filteredData);
   }, [filteredExpenses]);
-
+  console.log(labels);
   const data = {
     labels: labels.map((label) => {
       return label.month;
