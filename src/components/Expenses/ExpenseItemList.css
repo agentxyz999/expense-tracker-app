@@ -56,12 +56,15 @@ h2 {
 }
 /* Tablets */
 @media only screen and (min-width: 768px) {
+  .expense__date {
+    max-width: 10%;
+  }
   .expense__item {
-    min-width: 70%;
+    min-width: 20%;
     margin-left: 10px;
   }
   .expense__amount {
-    margin-top: 10px;
+    min-width: 10rem;
   }
 }
 /* Large devices laptops and desktops */
